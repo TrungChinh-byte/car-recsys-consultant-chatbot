@@ -287,7 +287,7 @@ def sql_search_cars(brand=None, model=None, constraints=None, exclude_brands=Non
             vehicle_url AS post_link, primary_image_url
         FROM gold.vehicles
         WHERE {' AND '.join(conditions)}
-        ORDER BY price ASC
+        ORDER BY price DESC
         LIMIT :limit
     """)
 
@@ -595,9 +595,11 @@ Use ONLY the provided 'Knowledge Context' (SQL hard-filter matches and semantic 
 3. Add a short, tailored pros/cons for each option based on the customer's preferences.
 4. Always format price with comma separators (e.g., $21,950).
 5. Keep it natural and persuasive, like a professional consultant.
-6. Provide images or extra details ONLY when the customer explicitly requests them.
-7. Do NOT add any "View Details" links or external URLs in your reply — the app shows
-   clickable vehicle cards under your message, so links in the text are redundant.
+6. Provide images, extra details, or external links only when the customer explicitly requests them.
+   If the customer requests a link, provide it only when necessary and relevant.
+7. Do NOT add "View Details" links or external URLs by default in your reply.
+   The app automatically displays clickable vehicle cards below your message, so avoid adding duplicate links in the response text.
+   This rule does not apply when the customer explicitly asks for a specific link or URL.
 8. If nothing fits, say so honestly and offer the closest alternatives or general advice.
 Use the Customer Profile for personalization. NEVER recommend any brand in excluded_brands.
 Reply in the same language the customer is using.
